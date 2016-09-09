@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f2133036">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ingrese su nombre"
+        android:id="@+id/textView"
+        android:layout_marginTop="39dp"
+        android:textSize="35dp"
+        android:textColor="#ffffff"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/nombre"
+        android:layout_width="170dp"
+        android:layout_height="40dp"
+        android:inputType="text"
+        android:background="#f3c4c4c4"
+        android:textStyle="italic"
+        android:textColor="#000000"
+        android:textSize="35dp"
+        android:layout_marginTop="39dp"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="220dp"
+        android:layout_height="45dp"
+        android:text="Jugar"
+        android:id="@+id/jugar"
+        android:textSize="30dp"
+        android:textColor="#000000"
+        android:background="#908c5023"
+        android:layout_marginTop="41dp"
+        android:layout_below="@+id/nombre"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:src="@mipmap/img2"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>
