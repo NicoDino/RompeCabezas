@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="org.catos.rompecabezas.MenuActivity"
-    android:background="@mipmap/img1">
+    android:background="@mipmap/img4">
 
     <TextView
         android:layout_width="wrap_content"
@@ -17,13 +17,14 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Rompe Cabezas"
         android:id="@+id/titulo"
-        android:textSize="40dp"
-        android:textColor="#e5e88539"
+        android:textSize="55dp"
+        android:textColor="#dc54aa7e"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:typeface="serif"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:fontFamily="cursive"
+        />
 
     <Button
         android:layout_width="170dp"
@@ -32,7 +33,7 @@
         android:id="@+id/salir"
         android:textSize="30dp"
         android:textColor="#000000"
-        android:background="#908c5023"
+        android:background="@drawable/btn_oval"
         android:layout_marginBottom="40dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
@@ -44,7 +45,7 @@
         android:id="@+id/verRank"
         android:textSize="30dp"
         android:textColor="#000000"
-        android:background="#908c5023"
+        android:background="@drawable/btn_oval"
         android:layout_marginBottom="40dp"
         android:layout_above="@+id/salir"
         android:layout_centerHorizontal="true" />
@@ -56,8 +57,9 @@
         android:id="@+id/empezar"
         android:textSize="30dp"
         android:textColor="#000000"
-        android:background="#908c5023"
+        android:background="@drawable/btn_oval"
         android:layout_marginBottom="40dp"
         android:layout_above="@+id/verRank"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"/>
+
 </RelativeLayout>

@@ -26,18 +26,22 @@ public class FormActivity extends AppCompatActivity {
         //Implementamos el evento click del botón
         this.jugar.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                //Creamos el intent
-                Intent intentGame = new Intent(FormActivity.this, GameActivity.class);
+                String aux = nombre.getText().toString();
+                //si no seingresa nada en el EditText no se puede comenzar a jugar
+                if(!aux.equals("") && aux != null) {
+                    //Creamos el intent
+                    Intent intentGame = new Intent(FormActivity.this, GameActivity.class);
 
-                //Creamos el bundle para pasar info entre las actividades
-                Bundle b = new Bundle();
-                b.putString("NOMBRE",nombre.getText().toString());
+                    //Creamos el bundle para pasar info entre las actividades
+                    Bundle b = new Bundle();
+                    b.putString("NOMBRE", aux);
 
-                //Añadimos la info al intentGame
-                intentGame.putExtras(b);
+                    //Añadimos la info al intentGame
+                    intentGame.putExtras(b);
 
-                //iniciamos la nueva actividad
-                startActivity(intentGame);
+                    //iniciamos la nueva actividad
+                    startActivity(intentGame);
+                }
             }
         });
 
