@@ -31,129 +31,147 @@
     <Button
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:text="img1"
         android:id="@+id/b1"
         android:layout_row="2"
         android:layout_column="1"
-        android:background="@mipmap/logo" />
+        android:background="@mipmap/a"
+        android:onClick="mover"/>
 
     <Button
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:text="img1"
         android:id="@+id/b2"
         android:layout_row="2"
-        android:layout_column="2" />
+        android:layout_column="2"
+        android:background="@mipmap/b"
+        android:onClick="mover"/>
 
     <Button
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:text="img1"
         android:id="@+id/b3"
         android:layout_row="2"
-        android:layout_column="3" />
+        android:layout_column="3"
+        android:onClick="mover"
+        android:allowUndo="true"
+        android:background="@mipmap/c" />
 
     <Button
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:text="img1"
         android:id="@+id/b4"
         android:layout_row="2"
-        android:layout_column="4" />
+        android:layout_column="4"
+        android:background="@mipmap/d"
+        android:onClick="mover"/>
 
     <Button
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:text="img1"
         android:id="@+id/b5"
         android:layout_row="3"
-        android:layout_column="1" />
+        android:layout_column="1"
+        android:background="@mipmap/e"
+        android:onClick="mover"/>
 
     <Button
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:text="img1"
         android:id="@+id/b6"
         android:layout_row="3"
-        android:layout_column="2" />
+        android:layout_column="2"
+        android:background="@mipmap/f"
+        android:onClick="mover"/>
 
     <Button
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:text="img1"
         android:id="@+id/b7"
         android:layout_row="3"
-        android:layout_column="3" />
+        android:layout_column="3"
+        android:background="@mipmap/g"
+        android:onClick="mover"/>
 
     <Button
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:text="img1"
         android:id="@+id/b8"
         android:layout_row="3"
-        android:layout_column="4" />
+        android:layout_column="4"
+        android:src="@mipmap/h"
+        android:background="@mipmap/h"
+        android:onClick="mover"/>
 
     <Button
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:text="img1"
         android:id="@+id/b9"
         android:layout_row="4"
-        android:layout_column="1" />
+        android:layout_column="1"
+        android:src="@mipmap/i"
+        android:background="@mipmap/i"
+        android:onClick="mover"/>
 
     <Button
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:text="img1"
         android:id="@+id/b10"
         android:layout_row="4"
-        android:layout_column="2" />
+        android:layout_column="2"
+        android:background="@mipmap/j"
+        android:onClick="mover"/>
 
     <Button
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:text="img1"
         android:id="@+id/b11"
         android:layout_row="4"
-        android:layout_column="3" />
+        android:layout_column="3"
+        android:background="@mipmap/k"
+        android:onClick="mover"/>
 
     <Button
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:text="img1"
         android:id="@+id/b12"
         android:layout_row="4"
-        android:layout_column="4" />
+        android:layout_column="4"
+        android:background="@mipmap/l"
+        android:onClick="mover"/>
 
     <Button
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:text="img1"
         android:id="@+id/b13"
         android:layout_row="5"
-        android:layout_column="1" />
+        android:layout_column="1"
+        android:background="@mipmap/m"
+        android:onClick="mover"/>
 
     <Button
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:text="img1"
         android:id="@+id/b14"
         android:layout_row="5"
-        android:layout_column="2" />
+        android:layout_column="2"
+        android:background="@mipmap/n"
+        android:onClick="mover" />
 
     <Button
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:text="img1"
         android:id="@+id/b15"
         android:layout_row="5"
-        android:layout_column="3" />
+        android:layout_column="3"
+        android:background="@mipmap/o"
+        android:onClick="mover"/>
 
     <Button
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:text="img1"
         android:id="@+id/b16"
         android:layout_row="5"
-        android:layout_column="4" />
+        android:layout_column="4"
+        android:background="#a5a5a5"
+        android:onClick="mover"/>
 </GridLayout>
