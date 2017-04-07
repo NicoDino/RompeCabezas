@@ -6,80 +6,117 @@ package org.catos.rompecabezas;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 
 public class GameActivity extends AppCompatActivity{
 
     private TextView nombre;
     private Button vacio;
-    private Button [] [] matriz = new Button[4][4];
+    private int [] [] matriz = new int [4][4];
+    private int [] tablero = new int[16];
+    private GridLayout l;
 
     protected void onCreate(Bundle saveInstanceState){
+        l =  (GridLayout)findViewById(R.id.grid);
         super.onCreate(saveInstanceState);
         setContentView(R.layout.acticity_game);
-
         //Localizar los controles
         this.nombre = (TextView)findViewById(R.id.nombre);
-        /**
-        for(int i=0; i<4; i++){
-            for(int j=0;j<4; j++){
-                this.matriz [i][j] = (Button)findViewById(R.id.b1);
-            }
-        }**/
-        //lo siguiente intentar hacerlo en el for de arriba
-        this.matriz [0][0] = (Button)findViewById(R.id.b1);
-        this.matriz [0][1] = (Button)findViewById(R.id.b2);
-        this.matriz [0][2] = (Button)findViewById(R.id.b3);
-        this.matriz [0][3] = (Button)findViewById(R.id.b4);
-        this.matriz [1][0] = (Button)findViewById(R.id.b5);
-        this.matriz [1][1] = (Button)findViewById(R.id.b6);
-        this.matriz [1][2] = (Button)findViewById(R.id.b7);
-        this.matriz [1][3] = (Button)findViewById(R.id.b8);
-        this.matriz [2][0] = (Button)findViewById(R.id.b9);
-        this.matriz [2][1] = (Button)findViewById(R.id.b10);
-        this.matriz [2][2] = (Button)findViewById(R.id.b11);
-        this.matriz [2][3] = (Button)findViewById(R.id.b12);
-        this.matriz [3][0] = (Button)findViewById(R.id.b13);
-        this.matriz [3][1] = (Button)findViewById(R.id.b14);
-        this.matriz [3][2] = (Button)findViewById(R.id.b15);
-        this.matriz [3][3] = (Button)findViewById(R.id.b16);
-        this.vacio = this.matriz[3][3];
+        this.vacio = (Button)findViewById(R.id.b16);
 
         //Recuperamos la información pasada en el intent
         Bundle bundle = this.getIntent().getExtras();
         String n = bundle.getString("NOMBRE");
 
-        //Construimos el mensaje a mostrar
+        //Construimos el mensaje a1 mostrar
         this.nombre.setText("Player: "+n);
 
-        /**el siguiente metodo debe ser implementado de la misma forma para todos los botones de la matriz
-         * por eso no debe ser "this.b1..." consultar cmo se implementa igual para todos.
-         * Y deberia analizar si el vacio es alguno de sus vecinos, si es mover la imagen a el y setear el boton
-         * desde el que se invocó como vacio.
-        this.b1.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+        //Construimos el tablero
+        this.armarTablero();
+        for (int c=0;c<15 ;c++){
+            System.out.println(this.tablero[c]);
 
-            }
-        });**/
-        View.OnClickListener act = new View.OnClickListener(){
-            @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-            public void onClick(View v){
-                vacio.setBackground(matriz[0][0].getBackground());
-                matriz[0][0].setBackground(null);
-                vacio = matriz [0][0];
-            }
-        };
+        }
 
-        for(int i=0;i<4;i++){
-            for(int j=0;j<4;j++){
-                this.matriz[i][j].setOnClickListener(act);
+        /*Mientras no se arme el tablero el juego continúa
+        while(!armado){
+            Defino el setOnClickListener para cada uno de los botones o puedo
+            Definir uno mas general? -> Ver el xml!!
+        }*/
+
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    public void mover(View v){
+        vacio.setBackground(v.getBackground());
+        int idBotonVacio=vacio.getId();
+        v.setBackgroundColor(Color.GRAY);
+        vacio = (Button) v;
+        for (int c=0;c<15 ;c++){
+            System.out.println(this.tablero[c]);
+        }
+        int idBoton=v.
+        System.out.println("ID VACIO" + idBotonVacio);
+        System.out.println("ID BOTON" + idBoton);
+        //Falta mover los elementos del tablero antes de verificar si estaOrdenado
+        System.out.println("----------------------------------------");
+        System.out.println(this.estaOrdenado());
+        System.out.println("----------------------------------------");
+        if(this.estaOrdenado()){
+            //Mostrar mensaje WIN. En nueva actividad o como sea.
+        }
+    }
+
+    public boolean estaOrdenado(){
+        int leng = this.tablero.length;
+        boolean ordenado = true;
+        for (int i=0;i<(leng-1) && ordenado ;i++){
+            System.out.println(this.tablero[i]);
+            if (this.tablero[i]>this.tablero[i+1]){
+                ordenado = false;
             }
+        }
+        return ordenado;
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public void armarTablero(){
+        ArrayList list = new ArrayList(15);
+        int i,r = 0, aux=0;
+        //lleno la lista con 15 enteros
+        for(i=1;i<16;i++){
+            list.add(i);
+        }
+        /**Leno el tablero con una pocision aleatoria dela lista que armé.
+            Además asigno un fragmento de imagen a cada boton en el mismo recorrido**/
+        Random rdm = new Random();
+        for(i=0;i<16;i++){
+            if(i!=15) {
+                r = rdm.nextInt(15 - i);
+                aux = (int) list.get(r);
+                list.remove(r);
+            }
+            this.tablero[i] = aux;
+            //obtengo el id de cada boton
+            int id = this.getResources().getIdentifier("b"+(i+1), "id", this.getPackageName());
+            //seteo su background con el fragmento de imagen que corresponda
+            int idi = this.getResources().getIdentifier("a"+aux, "mipmap",this.getPackageName());
+            Button b = (Button) findViewById(id);
+            b.setBackground(this.getResources().getDrawable(idi,null));
+
         }
     }
 }
