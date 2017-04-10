@@ -3,10 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/RompeCabezas.iml" filepath="$PROJECT_DIR$/RompeCabezas.iml" />
-      <module fileurl="file://$PROJECT_DIR$/RompeCabezas-Git.iml" filepath="$PROJECT_DIR$/RompeCabezas-Git.iml" />
-      <module fileurl="file://$PROJECT_DIR$/RompeCabezas-git.iml" filepath="$PROJECT_DIR$/RompeCabezas-git.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

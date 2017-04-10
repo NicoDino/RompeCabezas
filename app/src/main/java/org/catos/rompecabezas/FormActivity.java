@@ -27,7 +27,7 @@ public class FormActivity extends AppCompatActivity {
         this.jugar.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 String aux = nombre.getText().toString();
-                //si no seingresa nada en el EditText no se puede comenzar a jugar
+                //si no seingresa nada en el EditText no se puede comenzar a1 jugar
                 if(!aux.equals("") && aux != null) {
                     //Creamos el intent
                     Intent intentGame = new Intent(FormActivity.this, GameActivity.class);
