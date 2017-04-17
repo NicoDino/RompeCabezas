@@ -106,13 +106,13 @@ public class GameActivity extends AppCompatActivity {
         ArrayList list = new ArrayList(15);
         int i, r = 0, aux = 0;
         //lleno la lista con 15 enteros
-        for (i = 1; i < 17; i++) {
+        for (i = 1; i < 16; i++) {
             list.add(i);
         }
         /**Leno el tablero con una pocision aleatoria dela lista que armé.
          Además asigno un fragmento de imagen a cada boton en el mismo recorrido**/
         Random rdm = new Random();
-        for (i = 0; i < 16; i++) {
+        for (i = 0; i < 15; i++) {
             if (i != 15) {
                 r = rdm.nextInt(15 - i);
                 aux = (int) list.get(r);
