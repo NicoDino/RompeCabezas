@@ -65,18 +65,20 @@ public class GameActivity extends AppCompatActivity {
         vacio.setBackground(v.getBackground());
         v.setBackgroundColor(Color.GRAY);
         vacio = (Button) v;
-
+        boolean entrar=true;
         System.out.println("TEXT" + ((Button) v).getText());
 
         for (i = 0; i < 16; i++) {
             if (this.tablero[i] == auxB) {
                 System.out.println("Movimiento :" + this.tablero[i] + "por" + auxV);
                 this.tablero[i] = auxV;
+                entrar= false;
             }
-            if (this.tablero[i] == auxV) {
+            if (this.tablero[i] == auxV && entrar) {
                 System.out.println("Movimiento :" + this.tablero[i] + "por" + auxB);
                 this.tablero[i] = auxB;
             }
+            entrar= true;
         }
         for (i = 0; i < 16; i++) {
             System.out.print(this.tablero[i] + "-");
@@ -112,16 +114,20 @@ public class GameActivity extends AppCompatActivity {
         /**Leno el tablero con una pocision aleatoria dela lista que armé.
          Además asigno un fragmento de imagen a cada boton en el mismo recorrido**/
         Random rdm = new Random();
-        for (i = 0; i < 15; i++) {
+        for (i = 0; i < 16; i++) {
             if (i != 15) {
                 r = rdm.nextInt(15 - i);
                 aux = (int) list.get(r);
                 list.remove(r);
+                this.tablero[i] = aux;
             }
-            this.tablero[i] = aux;
+            if(i==15){
+                this.tablero[i]=16;
+            }
+
             //obtengo el id de cada boton
             int id = this.getResources().getIdentifier("b" + (i + 1), "id", this.getPackageName());
-            //seteo su background con el fragmento de imagen que corresponda
+            // seteo su background con el fragmento de imagen que corresponda
             int idi = this.getResources().getIdentifier("a" + aux, "mipmap", this.getPackageName());
             Button b = (Button) findViewById(id);
             b.setBackground(this.getResources().getDrawable(idi, null));
