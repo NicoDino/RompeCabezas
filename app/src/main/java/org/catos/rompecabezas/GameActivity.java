@@ -49,37 +49,21 @@ public class GameActivity extends Activity {
             System.out.print(this.tablero[c] + "-");
         }
         System.out.println("");
-        /*Mientras no se arme el tablero el juego continúa
-        while(!armado){
-            Defino el setOnClickListener para cada uno de los botones o puedo
-            Definir uno mas general? -> Ver el xml!!
-        }*/
 
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void mover(View v) {
         int auxV, auxB, i;
-        auxV = Integer.parseInt(((Button) v).getText().toString());
-        auxB = Integer.parseInt(((Button) vacio).getText().toString());
+        auxV = Integer.parseInt(((Button) v).getText().toString())-1; //poscision en a qe esta el boton qe tocamos
+        int aux = this.tablero[auxV];
+        auxB = Integer.parseInt(((Button) vacio).getText().toString())-1;//poscision en la qe esta el vacio
+        this.tablero[auxV]= this.tablero[auxB];
+        this.tablero[auxB]=aux;
         vacio.setBackground(v.getBackground());
         v.setBackgroundColor(Color.GRAY);
         vacio = (Button) v;
-        boolean entrar=true;
         System.out.println("TEXT" + ((Button) v).getText());
-
-        for (i = 0; i < 16; i++) {
-            if (this.tablero[i] == auxB) {
-                System.out.println("Movimiento :" + this.tablero[i] + "por" + auxV);
-                this.tablero[i] = auxV;
-                entrar= false;
-            }
-            if (this.tablero[i] == auxV && entrar) {
-                System.out.println("Movimiento :" + this.tablero[i] + "por" + auxB);
-                this.tablero[i] = auxB;
-            }
-            entrar= true;
-        }
         for (i = 0; i < 16; i++) {
             System.out.print(this.tablero[i] + "-");
         }
@@ -114,17 +98,11 @@ public class GameActivity extends Activity {
         /**Leno el tablero con una pocision aleatoria dela lista que armé.
          Además asigno un fragmento de imagen a cada boton en el mismo recorrido**/
         Random rdm = new Random();
-        for (i = 0; i < 16; i++) {
-            if (i != 15) {
-                r = rdm.nextInt(15 - i);
-                aux = (int) list.get(r);
-                list.remove(r);
-                this.tablero[i] = aux;
-            }
-            if(i==15){
-                this.tablero[i]=16;
-            }
-
+        for (i = 0; i < 15; i++) {
+            r = rdm.nextInt(15 - i);
+            aux = (int) list.get(r);
+            list.remove(r);
+            this.tablero[i] = aux;
             //obtengo el id de cada boton
             int id = this.getResources().getIdentifier("b" + (i + 1), "id", this.getPackageName());
             // seteo su background con el fragmento de imagen que corresponda
@@ -132,6 +110,8 @@ public class GameActivity extends Activity {
             Button b = (Button) findViewById(id);
             b.setBackground(this.getResources().getDrawable(idi, null));
         }
+        this.tablero[15]=16;
+        vacio.setBackgroundColor(Color.GRAY);
 
         System.out.println("TABLERO INICIAL");
         for (i = 0; i < 16; i++) {
