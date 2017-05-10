@@ -11,17 +11,17 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+//import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.Random;
 
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends Activity {
 
     private TextView nombre;
     private Button vacio;
