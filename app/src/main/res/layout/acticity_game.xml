@@ -36,7 +36,8 @@
         android:layout_column="0"
         android:layout_row="2"
         android:onClick="mover"
-        android:text="1" />
+        android:text="1"
+        android:textColor="@android:color/transparent" />
 
     <Button
         android:id="@+id/b2"
@@ -45,7 +46,8 @@
         android:layout_column="1"
         android:layout_row="2"
         android:onClick="mover"
-        android:text="2" />
+        android:text="2"
+        android:textColor="@android:color/transparent"/>
 
     <Button
         android:id="@+id/b3"
@@ -54,7 +56,8 @@
         android:layout_column="2"
         android:layout_row="2"
         android:onClick="mover"
-        android:text="3" />
+        android:text="3"
+        android:textColor="@android:color/transparent"/>
 
     <Button
         android:id="@+id/b4"
@@ -63,7 +66,8 @@
         android:layout_column="3"
         android:layout_row="2"
         android:onClick="mover"
-        android:text="4" />
+        android:text="4"
+        android:textColor="@android:color/transparent"/>
 
     <Button
         android:id="@+id/b5"
@@ -72,7 +76,8 @@
         android:layout_column="0"
         android:layout_row="3"
         android:onClick="mover"
-        android:text="5" />
+        android:text="5"
+        android:textColor="@android:color/transparent"/>
 
     <Button
         android:id="@+id/b6"
@@ -81,7 +86,8 @@
         android:layout_column="1"
         android:layout_row="3"
         android:onClick="mover"
-        android:text="6" />
+        android:text="6"
+        android:textColor="@android:color/transparent"/>
 
     <Button
         android:id="@+id/b7"
@@ -90,7 +96,8 @@
         android:layout_column="2"
         android:layout_row="3"
         android:onClick="mover"
-        android:text="7" />
+        android:text="7"
+        android:textColor="@android:color/transparent"/>
 
     <Button
         android:id="@+id/b8"
@@ -100,7 +107,8 @@
         android:layout_row="3"
         android:onClick="mover"
         android:src="@mipmap/a8"
-        android:text="8" />
+        android:text="8"
+        android:textColor="@android:color/transparent"/>
 
     <Button
         android:id="@+id/b9"
@@ -110,7 +118,8 @@
         android:layout_row="4"
         android:onClick="mover"
         android:src="@mipmap/a9"
-        android:text="9" />
+        android:text="9"
+        android:textColor="@android:color/transparent"/>
 
     <Button
         android:id="@+id/b10"
@@ -119,7 +128,8 @@
         android:layout_column="1"
         android:layout_row="4"
         android:onClick="mover"
-        android:text="10" />
+        android:text="10"
+        android:textColor="@android:color/transparent"/>
 
     <Button
         android:id="@+id/b11"
@@ -128,7 +138,8 @@
         android:layout_column="2"
         android:layout_row="4"
         android:onClick="mover"
-        android:text="11" />
+        android:text="11"
+        android:textColor="@android:color/transparent"/>
 
     <Button
         android:id="@+id/b12"
@@ -137,7 +148,8 @@
         android:layout_column="3"
         android:layout_row="4"
         android:onClick="mover"
-        android:text="12" />
+        android:text="12"
+        android:textColor="@android:color/transparent"/>
 
     <Button
         android:id="@+id/b13"
@@ -146,7 +158,8 @@
         android:layout_column="0"
         android:layout_row="5"
         android:onClick="mover"
-        android:text="13" />
+        android:text="13"
+        android:textColor="@android:color/transparent"/>
 
     <Button
         android:id="@+id/b14"
@@ -155,7 +168,8 @@
         android:layout_column="1"
         android:layout_row="5"
         android:onClick="mover"
-        android:text="14" />
+        android:text="14"
+        android:textColor="@android:color/transparent"/>
 
     <Button
         android:id="@+id/b15"
@@ -164,7 +178,8 @@
         android:layout_column="2"
         android:layout_row="5"
         android:onClick="mover"
-        android:text="15" />
+        android:text="15"
+        android:textColor="@android:color/transparent"/>
 
     <Button
         android:id="@+id/b16"
@@ -173,7 +188,8 @@
         android:layout_column="3"
         android:layout_row="5"
         android:onClick="mover"
-        android:text="16" />
+        android:text="16"
+        android:textColor="@android:color/transparent"/>
 
     <TextView
         android:id="@+id/cont"
