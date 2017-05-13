@@ -8,6 +8,7 @@ import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.app.Activity;
@@ -19,15 +20,21 @@ import java.util.Random;
 
 
 public class GameActivity extends Activity {
+    MediaPlayer musica;
+    MediaPlayer win;
 
     private TextView nombre, textMov;
     private Button vacio;
+
     private int[] tablero = new int[16]; //Estructura de control
     private int contMov =0; //Contador de contMov
 
     protected void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.acticity_game);
+        musica= MediaPlayer.create(GameActivity.this, R.raw.mario);
+        musica.setLooping(true);
+        musica.start();
         //Localizar los controles
         this.nombre = (TextView) findViewById(R.id.nombre);
         this.textMov = (TextView) findViewById(R.id.cont);
@@ -44,7 +51,33 @@ public class GameActivity extends Activity {
         //Construimos el tablero
         this.armarTablero();
     }
+    private boolean verificarMovimiento(int movido,int vacio){
+        System.out.println("MOVIDO:  "+movido);
+        System.out.println("VACIO:  "+vacio);
+        boolean valido=false;
+        if( (movido == vacio + 4 ) ){
+            if((vacio+4)< 16){
+                valido=true;
+            }
+        }
+        if( (movido == vacio - 4 ) ){
+            if((vacio-4)>-1){
+                valido=true;
+            }
+        }
+        if((movido == vacio -1)){
+            if((vacio-1)!=3 && (vacio-1)!=7 && (vacio-1)!=11 && (vacio-1)!=-1){
+                valido=true;
+            }
+        }
+        if((movido == vacio +1)){
+            if((vacio+1)!=12 && (vacio+1)!=8 && (vacio+1)!=4 && (vacio+1)!=16){
+                valido=true;
+            }
+        }
 
+        return valido;
+    }
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void mover(View v) {
         int auxT, auxV, aux;
@@ -53,7 +86,7 @@ public class GameActivity extends Activity {
         auxT = Integer.parseInt(((Button) v).getText().toString())-1;
         auxV = Integer.parseInt(vacio.getText().toString())-1;
 
-        if(true) { //Se debe controlar que el movimiento esta permitido(Botonoes vecinos)
+        if(verificarMovimiento(auxT,auxV)) { //Se debe controlar que el movimiento esta permitido(Botonoes vecinos)
             //Proyectamos el movimiento en el arreglo de control (tablero)
             aux = this.tablero[auxT];
             this.tablero[auxT] = this.tablero[auxV];
@@ -79,6 +112,10 @@ public class GameActivity extends Activity {
             System.out.println("----------------------------------------");
 
             if (this.estaOrdenado()) {
+                musica.stop();
+                musica.release();
+                win= MediaPlayer.create(GameActivity.this, R.raw.win);
+                win.start();
                 //Mostrar mensaje WIN. En nueva actividad o como sea.
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage("---  GG izi  ---")
@@ -96,10 +133,6 @@ public class GameActivity extends Activity {
         }
     }
 
-    private boolean verificarMovimiento(int vacio, int tocado){
-        boolean r = true;
-        return r;
-    }
 
     //devuelve true si la estructura de control esta ordenada
     private boolean estaOrdenado() {

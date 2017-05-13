@@ -17,6 +17,7 @@
         </activity>
         <activity android:name=".FormActivity" />
         <activity android:name=".GameActivity"></activity>
+
     </application>
 
 </manifest>

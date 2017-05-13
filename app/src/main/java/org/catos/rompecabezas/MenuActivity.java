@@ -3,12 +3,14 @@ package org.catos.rompecabezas;
 import android.app.Activity;
 import android.content.Intent;
 //import android.support.v7.app.AppCompatActivity;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 public class MenuActivity extends Activity {
 
+    MediaPlayer sonidito;
     private Button start;
     private Button rank;
     private Button exit;
@@ -27,6 +29,8 @@ public class MenuActivity extends Activity {
         this.start.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 //Creamos el intent
+                sonidito= MediaPlayer.create(MenuActivity.this, R.raw.metalgearsolid);
+                sonidito.start();
                 Intent intentForm = new Intent(MenuActivity.this, FormActivity.class);
                 //iniciamos la nueva actividad
                 startActivity(intentForm);
@@ -47,6 +51,7 @@ public class MenuActivity extends Activity {
         //Implementamos el evento click del botón "SALIR"
         this.exit.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
+
                 finish();
             }
         });
