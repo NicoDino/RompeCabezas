@@ -31,8 +31,10 @@ public class FormActivity extends Activity {
         //Implementamos el evento click del botón
         this.jugar.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                ps1.stop();
-                ps1.release();
+                if(ps1.isPlaying()) {//ESTO DA ERROR!!!
+                    ps1.stop();
+                    ps1.release();
+                }
                 chanchan= MediaPlayer.create(FormActivity.this, R.raw.chanchan);
                 chanchan.start();
                 String aux = nombre.getText().toString();

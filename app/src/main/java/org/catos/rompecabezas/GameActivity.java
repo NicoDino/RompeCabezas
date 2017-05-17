@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Random;
@@ -22,21 +23,26 @@ import java.util.Random;
 public class GameActivity extends Activity {
     MediaPlayer musica;
     MediaPlayer win;
+    Switch sound;
 
-    private TextView nombre, textMov;
+    private TextView textMov;
     private Button vacio;
 
     private int[] tablero = new int[16]; //Estructura de control
     private int contMov =0; //Contador de contMov
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     protected void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.acticity_game);
-        musica= MediaPlayer.create(GameActivity.this, R.raw.mario);
-        musica.setLooping(true);
-        musica.start();
+        this.sound = (Switch) findViewById(R.id.switch3);
+        this.sound.setChecked(true);
+        this.sound.setShowText(true);
+        this.musica= MediaPlayer.create(GameActivity.this, R.raw.happy3friends);
+        this.musica.setLooping(true);
+        this.musica.start();
         //Localizar los controles
-        this.nombre = (TextView) findViewById(R.id.nombre);
+        TextView nombre = (TextView) findViewById(R.id.nombre);
         this.textMov = (TextView) findViewById(R.id.cont);
         this.vacio = (Button) findViewById(R.id.b16);
 
@@ -45,15 +51,29 @@ public class GameActivity extends Activity {
         String namePlayer = bundle.getString("NOMBRE");
 
         //Construimos el mensaje a1 mostrar
-        this.nombre.setText("Player: " + namePlayer);
+        nombre.setText("Jugador: " + namePlayer);
         this.textMov.setText("Movimientos: " + this.contMov);
 
         //Construimos el tablero
         this.armarTablero();
     }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public void actionSwitch(View v){
+        if(this.sound.getShowText()) {
+            this.musica.stop();
+            this.musica.release();
+            this.sound.setShowText(false);
+        }
+        else {
+            this.musica= MediaPlayer.create(GameActivity.this, R.raw.happy3friends);
+            this.musica.setLooping(true);
+            this.musica.start();
+            this.sound.setShowText(true);
+        }
+    }
+
     private boolean verificarMovimiento(int movido,int vacio){
-        System.out.println("MOVIDO:  "+movido);
-        System.out.println("VACIO:  "+vacio);
         boolean valido=false;
         if( (movido == vacio + 4 ) ){
             if((vacio+4)< 16){
@@ -75,9 +95,9 @@ public class GameActivity extends Activity {
                 valido=true;
             }
         }
-
         return valido;
     }
+
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void mover(View v) {
         int auxT, auxV, aux;
@@ -101,22 +121,20 @@ public class GameActivity extends Activity {
             this.contMov++;
             this.textMov.setText("Movimientos: " + this.contMov);
 
+            /*            //Print para debug (BORRAR)
             System.out.println("TEXT" + ((Button) v).getText());
             for (int i = 0; i < 16; i++) {
                 System.out.print(this.tablero[i] + "-");
             }
-
-            //Print para debug (BORRAR)
             System.out.println("----------------------------------------");
             System.out.println(this.estaOrdenado());
-            System.out.println("----------------------------------------");
+            System.out.println("----------------------------------------");*/
 
             if (this.estaOrdenado()) {
-                musica.stop();
-                musica.release();
-                win= MediaPlayer.create(GameActivity.this, R.raw.win);
-                win.start();
-                //Mostrar mensaje WIN. En nueva actividad o como sea.
+                this.musica.stop();
+                this.musica.release();
+                this.win = MediaPlayer.create(GameActivity.this, R.raw.win);
+                this.win.start();
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage("---  GG izi  ---")
                         .setTitle("You WIN!!")
@@ -132,7 +150,6 @@ public class GameActivity extends Activity {
             }
         }
     }
-
 
     //devuelve true si la estructura de control esta ordenada
     private boolean estaOrdenado() {
@@ -175,12 +192,5 @@ public class GameActivity extends Activity {
         //El ultimo boton es el vacío, x lo tanto no tiene fragmento de imagen
         this.tablero[15]=16;
         vacio.setBackgroundColor(Color.GRAY);
-
-        //Print para debug (BORRAR)
-        System.out.println("TABLERO INICIAL");
-        for (i = 0; i < 16; i++) {
-            System.out.print(this.tablero[i] + "-");
-        }
-        System.out.println("");
     }
 }
