@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f2133036"
+    android:columnOrderPreserved="false"
     android:paddingLeft="40dp"
     android:paddingRight="5dp"
     android:paddingTop="5dp"
@@ -210,13 +211,22 @@
         android:textColor="#ffffff"
         android:textSize="30dp" />
 
-    <!--Switch
+    <ToggleButton
+        android:id="@+id/toggleButton"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_column="2"
+        android:layout_row="0"
+        android:onClick="actionSwitch"
+        android:text="@string/sound_active" />
+
+    <Switch
         android:id="@+id/switch1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_column="3"
         android:layout_row="0"
-        android:text="@string/sound_active" /-->
-
+        android:onClick="actionSwitch"
+        android:text="@string/sound_active" />
 
 </GridLayout>

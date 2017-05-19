@@ -19,14 +19,15 @@
         android:id="@+id/nombre"
         android:layout_width="170dp"
         android:layout_height="40dp"
-        android:inputType="text"
-        android:background="#f3c4c4c4"
-        android:textStyle="italic"
-        android:textColor="#000000"
-        android:textSize="35dp"
-        android:layout_marginTop="39dp"
         android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="39dp"
+        android:background="#f3c4c4c4"
+        android:inputType="text"
+        android:textColor="#000000"
+        android:textColorLink="@android:color/background_dark"
+        android:textSize="35dp"
+        android:textStyle="italic" />
 
     <Button
         android:layout_width="170dp"

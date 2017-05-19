@@ -36,9 +36,9 @@ public class GameActivity extends Activity {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.acticity_game);
 
-        //this.switchSonido = (Switch) findViewById(R.id.switch1);
-        //this.switchSonido.setChecked(true);
-        //this.switchSonido.setShowText(true);
+        this.switchSonido = (Switch) findViewById(R.id.switch1);
+        this.switchSonido.setChecked(true);
+        this.switchSonido.setShowText(true);
 
         this.musica= MediaPlayer.create(GameActivity.this, R.raw.happy3friends);
         this.musica.setLooping(true);
