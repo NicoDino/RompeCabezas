@@ -23,7 +23,7 @@ import java.util.Random;
 public class GameActivity extends Activity {
     MediaPlayer musica;
     MediaPlayer win;
-    Switch sound;
+    Switch switchSonido;
 
     private TextView textMov;
     private Button vacio;
@@ -35,12 +35,15 @@ public class GameActivity extends Activity {
     protected void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.acticity_game);
-        this.sound = (Switch) findViewById(R.id.switch3);
-        this.sound.setChecked(true);
-        this.sound.setShowText(true);
+
+        //this.switchSonido = (Switch) findViewById(R.id.switch1);
+        //this.switchSonido.setChecked(true);
+        //this.switchSonido.setShowText(true);
+
         this.musica= MediaPlayer.create(GameActivity.this, R.raw.happy3friends);
         this.musica.setLooping(true);
         this.musica.start();
+
         //Localizar los controles
         TextView nombre = (TextView) findViewById(R.id.nombre);
         this.textMov = (TextView) findViewById(R.id.cont);
@@ -51,8 +54,8 @@ public class GameActivity extends Activity {
         String namePlayer = bundle.getString("NOMBRE");
 
         //Construimos el mensaje a1 mostrar
-        nombre.setText("Jugador: " + namePlayer);
-        this.textMov.setText("Movimientos: " + this.contMov);
+        nombre.setText(getResources().getString(R.string.player_name) +": "+ namePlayer);
+        this.textMov.setText(getResources().getString(R.string.movements) +": "+ this.contMov);
 
         //Construimos el tablero
         this.armarTablero();
@@ -60,16 +63,16 @@ public class GameActivity extends Activity {
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public void actionSwitch(View v){
-        if(this.sound.getShowText()) {
+        if(this.switchSonido.getShowText()) {
             this.musica.stop();
             this.musica.release();
-            this.sound.setShowText(false);
+            this.switchSonido.setShowText(false);
         }
         else {
             this.musica= MediaPlayer.create(GameActivity.this, R.raw.happy3friends);
             this.musica.setLooping(true);
             this.musica.start();
-            this.sound.setShowText(true);
+            this.switchSonido.setShowText(true);
         }
     }
 
@@ -119,7 +122,7 @@ public class GameActivity extends Activity {
 
             //Aumento en 1 el contador de contMov.
             this.contMov++;
-            this.textMov.setText("Movimientos: " + this.contMov);
+            this.textMov.setText(getResources().getString(R.string.movements) +": "+ this.contMov);
 
             /*            //Print para debug (BORRAR)
             System.out.println("TEXT" + ((Button) v).getText());

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RompeCabezas</string>
+    <string name="exit">SALIR</string>
+    <string name="movements">Movimientos</string>
+    <string name="play">JUGAR</string>
+    <string name="player_name">Jugador</string>
+    <string name="ranking">PUNTAJES</string>
+    <string name="request_name">Ingrese su nombre</string>
+    <string name="sound_active">Sonido</string>
+    <string name="starting">EMPEZAR</string>
+</resources>

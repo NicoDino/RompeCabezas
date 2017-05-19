@@ -51,7 +51,6 @@ public class MenuActivity extends Activity {
         //Implementamos el evento click del botón "SALIR"
         this.exit.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-
                 finish();
             }
         });
