@@ -16,6 +16,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -56,6 +60,14 @@ public class GameActivity extends Activity {
 
         //Construimos el tablero
         this.armarTablero();
+
+        //cargo o creo el Ranking
+        try {
+            FileOutputStream rank = openFileOutput("Ranking",MODE_APPEND);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -131,6 +143,9 @@ public class GameActivity extends Activity {
             System.out.println("----------------------------------------");*/
 
             if (this.estaOrdenado()) {
+
+
+
                 this.musica.stop();
                 this.musica.release();
                 this.win = MediaPlayer.create(GameActivity.this, R.raw.win);
@@ -193,4 +208,11 @@ public class GameActivity extends Activity {
         this.tablero[15]=16;
         vacio.setBackgroundColor(Color.GRAY);
     }
+    @Override
+    protected void onPause() {
+        musica.release();
+        win.release();
+        super.onPause();
+    }
+
 }

@@ -20,6 +20,8 @@ public class MenuActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
+
+
         //Localizar los controles
         this.start = (Button)findViewById(R.id.empezar);
         this.rank = (Button)findViewById(R.id.verRank);
