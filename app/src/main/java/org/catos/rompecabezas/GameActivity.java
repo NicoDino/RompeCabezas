@@ -28,7 +28,7 @@ public class GameActivity extends Activity {
     MediaPlayer musica;
     MediaPlayer win;
     Switch sound;
-
+    private SqlHelper myDb;
     private TextView textMov;
     private Button vacio;
 
@@ -61,12 +61,10 @@ public class GameActivity extends Activity {
         //Construimos el tablero
         this.armarTablero();
 
-        //cargo o creo el Ranking
-        try {
-            FileOutputStream rank = openFileOutput("Ranking",MODE_APPEND);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        System.out.println("ONCREATE DE GAMEACTIVITY");
+        myDb = new SqlHelper(this);
+        String result = myDb.getRanking();
+        System.out.println("RANKING: ----------------------" + result);
 
     }
 
@@ -210,6 +208,8 @@ public class GameActivity extends Activity {
     }
     @Override
     protected void onPause() {
+        musica.stop();
+        win.stop();
         musica.release();
         win.release();
         super.onPause();
