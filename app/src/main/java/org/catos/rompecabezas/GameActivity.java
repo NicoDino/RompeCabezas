@@ -16,6 +16,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -23,8 +27,10 @@ import java.util.Random;
 public class GameActivity extends Activity {
     MediaPlayer musica;
     MediaPlayer win;
+
     Switch switchSonido;
 
+    private SqlHelper myDb;
     private TextView textMov;
     private Button vacio;
 
@@ -59,6 +65,12 @@ public class GameActivity extends Activity {
 
         //Construimos el tablero
         this.armarTablero();
+
+        System.out.println("ONCREATE DE GAMEACTIVITY");
+        myDb = new SqlHelper(this);
+        String result = myDb.getRanking();
+        System.out.println("RANKING: ----------------------" + result);
+
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -134,6 +146,9 @@ public class GameActivity extends Activity {
             System.out.println("----------------------------------------");*/
 
             if (this.estaOrdenado()) {
+
+
+
                 this.musica.stop();
                 this.musica.release();
                 this.win = MediaPlayer.create(GameActivity.this, R.raw.win);
@@ -196,4 +211,13 @@ public class GameActivity extends Activity {
         this.tablero[15]=16;
         vacio.setBackgroundColor(Color.GRAY);
     }
+    @Override
+    protected void onPause() {
+        musica.stop();
+        win.stop();
+        musica.release();
+        win.release();
+        super.onPause();
+    }
+
 }

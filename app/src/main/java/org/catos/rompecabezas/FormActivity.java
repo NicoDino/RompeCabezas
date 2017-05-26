@@ -53,6 +53,7 @@ public class FormActivity extends Activity {
 
                     //iniciamos la nueva actividad
                     startActivity(intentGame);
+                    finish();
                 }
             }
         });
