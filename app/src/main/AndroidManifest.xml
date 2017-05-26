@@ -16,6 +16,7 @@
         </activity>
         <activity android:name=".FormActivity" />
         <activity android:name=".GameActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".RankActivity" android:screenOrientation="portrait"></activity>
 
     </application>
 

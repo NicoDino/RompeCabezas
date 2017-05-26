@@ -7,6 +7,7 @@ package org.catos.rompecabezas;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Build;
@@ -17,31 +18,32 @@ import android.widget.Button;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Random;
 
 
 public class GameActivity extends Activity {
+    private String nombreJugador;
+
     MediaPlayer musica;
     MediaPlayer win;
 
     Switch switchSonido;
 
-    private SqlHelper myDb;
     private TextView textMov;
     private Button vacio;
 
     private int[] tablero = new int[16]; //Estructura de control
     private int contMov =0; //Contador de contMov
 
+    private SqlHelper myDb;
+
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     protected void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.acticity_game);
 
+        //De
         this.switchSonido = (Switch) findViewById(R.id.switch1);
         this.switchSonido.setChecked(true);
         this.switchSonido.setShowText(true);
@@ -51,13 +53,14 @@ public class GameActivity extends Activity {
         this.musica.start();
 
         //Localizar los controles
-        TextView nombre = (TextView) findViewById(R.id.nombre);
+        TextView nombre = (TextView) findViewById(R.id.Ranking);
         this.textMov = (TextView) findViewById(R.id.cont);
         this.vacio = (Button) findViewById(R.id.b16);
 
         //Recuperamos la información pasada en el intent
         Bundle bundle = this.getIntent().getExtras();
         String namePlayer = bundle.getString("NOMBRE");
+        this.nombreJugador = namePlayer;
 
         //Construimos el mensaje a1 mostrar
         nombre.setText(getResources().getString(R.string.player_name) +": "+ namePlayer);
@@ -65,12 +68,6 @@ public class GameActivity extends Activity {
 
         //Construimos el tablero
         this.armarTablero();
-
-        System.out.println("ONCREATE DE GAMEACTIVITY");
-        myDb = new SqlHelper(this);
-        String result = myDb.getRanking();
-        System.out.println("RANKING: ----------------------" + result);
-
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -121,7 +118,8 @@ public class GameActivity extends Activity {
         auxT = Integer.parseInt(((Button) v).getText().toString())-1;
         auxV = Integer.parseInt(vacio.getText().toString())-1;
 
-        if(verificarMovimiento(auxT,auxV)) { //Se debe controlar que el movimiento esta permitido(Botonoes vecinos)
+        //verificarMovimiento(auxT,auxV)
+        if(true) { //Se debe controlar que el movimiento esta permitido(Botonoes vecinos)
             //Proyectamos el movimiento en el arreglo de control (tablero)
             aux = this.tablero[auxT];
             this.tablero[auxT] = this.tablero[auxV];
@@ -136,23 +134,15 @@ public class GameActivity extends Activity {
             this.contMov++;
             this.textMov.setText(getResources().getString(R.string.movements) +": "+ this.contMov);
 
-            /*            //Print para debug (BORRAR)
-            System.out.println("TEXT" + ((Button) v).getText());
-            for (int i = 0; i < 16; i++) {
-                System.out.print(this.tablero[i] + "-");
-            }
-            System.out.println("----------------------------------------");
-            System.out.println(this.estaOrdenado());
-            System.out.println("----------------------------------------");*/
-
             if (this.estaOrdenado()) {
-
-
-
                 this.musica.stop();
                 this.musica.release();
                 this.win = MediaPlayer.create(GameActivity.this, R.raw.win);
                 this.win.start();
+                Ranking puntos = new Ranking(this.nombreJugador,this.contMov);
+                this.myDb = new SqlHelper(this);
+                this.myDb.getWritableDatabase();
+                this.myDb.saveRanking(puntos);
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage("---  GG izi  ---")
                         .setTitle("You WIN!!")
@@ -160,7 +150,12 @@ public class GameActivity extends Activity {
                         .setNeutralButton("Continuar",
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
-                                        dialog.cancel(); //En vez de cancelar debería pasar a la vista de Rankings
+                                        //dialog.cancel(); //En vez de cancelar debería pasar a la vista de Rankings
+                                        //Creamos el intent
+                                        Intent intentR = new Intent(GameActivity.this, RankActivity.class);
+                                        //iniciamos la nueva actividad
+                                        startActivity(intentR);
+                                        finish();
                                     }
                                 });
                 AlertDialog alert = builder.create();

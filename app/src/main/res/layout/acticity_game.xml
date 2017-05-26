@@ -199,7 +199,7 @@
         android:layout_row="2" />
 
     <TextView
-        android:id="@+id/nombre"
+        android:id="@+id/Ranking"
         android:layout_width="275dp"
         android:layout_height="40dp"
         android:layout_centerHorizontal="true"
@@ -210,15 +210,6 @@
         android:text="@string/player_name"
         android:textColor="#ffffff"
         android:textSize="30dp" />
-
-    <ToggleButton
-        android:id="@+id/toggleButton"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_column="2"
-        android:layout_row="0"
-        android:onClick="actionSwitch"
-        android:text="@string/sound_active" />
 
     <Switch
         android:id="@+id/switch1"

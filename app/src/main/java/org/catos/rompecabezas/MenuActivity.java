@@ -2,14 +2,10 @@ package org.catos.rompecabezas;
 
 import android.app.Activity;
 import android.content.Intent;
-//import android.support.v7.app.AppCompatActivity;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
-
-import java.sql.SQLOutput;
 
 public class MenuActivity extends Activity {
 
@@ -43,15 +39,14 @@ public class MenuActivity extends Activity {
         });
 
         //Implementamos el evento click del botón "VER RANKING"
-        /**
-        this.start.setOnClickListener(new View.OnClickListener(){
+        this.rank.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 //Creamos el intent
-                Intent intentRank = new Intent(MenuActivity.this, .class);
+                Intent intentR = new Intent(MenuActivity.this, RankActivity.class);
                 //iniciamos la nueva actividad
-                startActivity(intentRank);
+                startActivity(intentR);
             }
-        });**/
+        });
 
         //Implementamos el evento click del botón "SALIR"
         this.exit.setOnClickListener(new View.OnClickListener(){

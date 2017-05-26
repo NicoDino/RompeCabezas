@@ -24,15 +24,6 @@ public class SqlHelper extends SQLiteOpenHelper {
                 + RankingContract.RankingEntry.NOMBRE + " TEXT NOT NULL,"
                 + RankingContract.RankingEntry.MOVIMIENTOS + " TEXT NOT NULL);"
         );
-
-        mockData(db);
-
-
-
-    }
-
-    private void mockData(SQLiteDatabase db) {
-        mockRanking(db,new  Ranking("asd",1));
     }
 
     public long mockRanking(SQLiteDatabase db, Ranking ranking){
@@ -65,7 +56,7 @@ public class SqlHelper extends SQLiteOpenHelper {
                 null,  // Valores a comparar con las columnas del WHERE
                 null,  // Agrupar con GROUP BY
                 null,  // Condición HAVING para GROUP BY
-                null  // Cláusula ORDER BY
+                RankingContract.RankingEntry.MOVIMIENTOS  // Cláusula ORDER BY
         );
 
         while(c.moveToNext()){

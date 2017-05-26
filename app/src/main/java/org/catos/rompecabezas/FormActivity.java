@@ -5,7 +5,6 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 //import android.support.v7.app.AppCompatActivity;
 import android.app.Activity;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,7 +24,7 @@ public class FormActivity extends Activity {
         ps1= MediaPlayer.create(FormActivity.this, R.raw.ps1);
         ps1.start();
         //Localizar los controles
-        this.nombre = (EditText) findViewById(R.id.nombre);
+        this.nombre = (EditText) findViewById(R.id.Ranking);
         this.jugar = (Button)findViewById(R.id.jugar);
 
         //Implementamos el evento click del botón
