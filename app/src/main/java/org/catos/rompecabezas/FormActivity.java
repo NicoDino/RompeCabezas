@@ -31,10 +31,12 @@ public class FormActivity extends Activity {
         //Implementamos el evento click del botón
         this.jugar.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                if(ps1.isPlaying()) {//ESTO DA ERROR!!!
-                    ps1.stop();
-                    ps1.release();
-                }
+                try {
+                    if (ps1.isPlaying()) {
+                        ps1.stop();
+                        ps1.release();
+                    }
+                }catch(Exception e){}
                 chanchan= MediaPlayer.create(FormActivity.this, R.raw.chanchan);
                 chanchan.start();
                 String aux = nombre.getText().toString();
@@ -58,6 +60,12 @@ public class FormActivity extends Activity {
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed(){
+        finish();
+        super.onBackPressed();
     }
 
 }

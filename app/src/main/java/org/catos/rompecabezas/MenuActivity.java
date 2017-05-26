@@ -60,4 +60,10 @@ public class MenuActivity extends Activity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed(){
+        finish();
+        super.onBackPressed();
+    }
 }
