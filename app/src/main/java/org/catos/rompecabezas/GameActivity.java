@@ -196,4 +196,16 @@ public class GameActivity extends Activity {
         this.tablero[15]=16;
         vacio.setBackgroundColor(Color.GRAY);
     }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    public void onBackPressed(){
+        if(this.switchSonido.getShowText()) {
+            this.musica.stop();
+            this.musica.release();
+            this.switchSonido.setShowText(false);
+        }
+        finish();
+        super.onBackPressed();
+    }
 }
